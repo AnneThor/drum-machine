@@ -7,24 +7,51 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentAction: '',
+      currentButton: '',
+      currentDrum: {
+        "Q": "CHINA",
+        "W": "HIGHHAT",
+        "E": "RIDE",
+        "A": "SNARE",
+        "S": "SIDESTICK",
+        "D": "TOM 1",
+        "Z": "TOM 2",
+        "X": "TOM 3",
+        "C": "TOM 4",
+      }
     };
-
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleDrumClick = this.handleDrumClick.bind(this);
   }
 
-/*
-  var slider = document.getElementById("myRange");
-  var output = document.getElementById("demo");
-  output.innerHTML = slider.value; //display the default slider value
-
-  //update the slider value when it is dragged
-  slider.oninput = function() {
-    output.innerHTML = this.value;
+  handleKeyDown(event) {
+    if (event.key.length > 1) { return };
+    let key = event.key.toUpperCase();
+    let regExp = /[ACDEQSWXZ]{1}/;
+    if (regExp.test(key)) {
+      document.getElementById(key).play();
+      this.setState({currentButton: key});
+    }
   }
-  */
+
+  handleDrumClick(event) {
+    this.setState( {currentButton: event.target.value });
+    document.getElementById(event.target.value).play();
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyDown, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyDown, false);
+  }
 
 
   render() {
+
+    let buttonMap = Object.keys(this.state.currentDrum);
+
     return (
       <div className="App"
            id="drum-machine">
@@ -33,16 +60,8 @@ class App extends React.Component {
         <div id="display">
 
           <section className="drum-buttons">
-              <Button value="Q" />
-              <Button value="W" />
-              <Button value="E" />
-              <Button value="A" />
-              <Button value="S" />
-              <Button value="D" />
-              <Button value="Z" />
-              <Button value="X" />
-              <Button value="C" />
-            </section>
+            { buttonMap.map( button => <Button key={button} value={button} drumButtonClick={this.handleDrumClick} />) }
+          </section>
 
           <section className="fine-tuners">
             <label htmlFor="power"
@@ -50,7 +69,7 @@ class App extends React.Component {
               <input type="checkbox" />
               <span className="power-slider"></span>
             </label>
-            <button className="display-button">KICK</button>
+            <button className="display-button">{this.state.currentDrum[`${this.state.currentButton}`]}</button>
             <div className="slide-container">
               <input type="range" min="0" max="100" value="50" className="slider" id="myRange" />
             </div>
