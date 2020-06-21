@@ -18,7 +18,8 @@ class App extends React.Component {
         "Z": "TOM 2",
         "X": "TOM 3",
         "C": "TOM 4",
-      }
+      },
+      power: "Off",
     };
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleDrumClick = this.handleDrumClick.bind(this);
@@ -36,7 +37,9 @@ class App extends React.Component {
 
   handleDrumClick(event) {
     this.setState( {currentButton: event.target.value });
-    document.getElementById(event.target.value).play();
+    let audioClip = document.getElementById(event.target.value);
+    audioClip.volume = document.getElementById("myRange").value;
+    audioClip.play();
   }
 
   componentDidMount() {
@@ -65,14 +68,23 @@ class App extends React.Component {
 
           <section className="fine-tuners">
             <label htmlFor="power"
-                   className="power-switch">POWER
+                   className="power-switch">{this.state.power}
               <input type="checkbox" />
               <span className="power-slider"></span>
             </label>
+
             <button className="display-button">{this.state.currentDrum[`${this.state.currentButton}`]}</button>
+
             <div className="slide-container">
-              <input type="range" min="0" max="100" value="50" className="slider" id="myRange" />
+              <label htmlFor="volume-slider"
+                     className="volume-slider-label">Volume:</label>
+              <input type="range"
+                     min="0" max="1"
+                     step=".1"
+                     className="slider"
+                     id="myRange" />
             </div>
+
             <label htmlFor="bank"
                    className="bank-switch">BANK
               <input type="checkbox" />

@@ -123,6 +123,11 @@ input:checked + .bank-slider:before {
   transform: translateX(26px);
 }
 
+.volume-slider-label {
+  font-family: 'Fredoka One', cursive;
+  font-size: 15pt;
+}
+
 .slide-container {
   width: 100%;
 }
