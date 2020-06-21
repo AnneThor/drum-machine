@@ -5,3 +5,4 @@ Functionality:
 - Triggers sample upon mouse click
 - Triggers sample upon keypress
 - Displays the drum type of the most recently triggered sound
+- Adjustable volume slider
