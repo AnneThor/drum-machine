@@ -3,10 +3,11 @@ import "./App.css";
 
 function Button(props) {
 
-      let audioSource='/audio/';
+      let audioSource="https://raw.githubusercontent.com/AnneThor/drum-machine/master/public/audio/";
+      {/*Adjusted references to allow functionality on github pages*/}
       switch (props.value) {
         case "A":
-          audioSource +=  "a-snare.wav"
+          audioSource += "a-snare.wav"
           break;
         case "C":
           audioSource += "c-tom4.wav"
