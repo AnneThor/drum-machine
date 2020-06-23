@@ -36,8 +36,10 @@ function Button(props) {
           return;
       }
 
-      let drumPadClass = "drum-pad-" + props.power.toLowerCase();
-
+      let drumPadClass = "drum-pad";
+      if (props.power === "On") {
+        drumPadClass += " on";
+      }
 
   return (
     <button className={drumPadClass}
@@ -49,6 +51,7 @@ function Button(props) {
         <audio className="clip"
                id={props.value}
                src={audioSource}
+               media-src={audioSource}
                type="audio/wav">
                Your browser does not support the <code>audio</code>element.
         </audio>

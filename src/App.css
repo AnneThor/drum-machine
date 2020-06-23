@@ -32,7 +32,7 @@
 }
 
 
-.drum-pad-off {
+.drum-pad {
   width: 90px;
   height: 75px;
   margin: 3px;
@@ -42,27 +42,7 @@
   font-size: 30pt;
 }
 
-.drum-pad-on {
-  width: 90px;
-  height: 75px;
-  margin: 3px;
-  border-radius: 10px;
-  box-shadow: 2px 3px red;
-  font-family: 'Fredoka One', cursive;
-  font-size: 30pt;
-}
-
-.display-button-on {
-  width: 80%;
-  height: 8vh;
-  margin: 5px;
-  border-radius: 10px;
-  box-shadow: 2px 3px red;
-  font-family: 'Fredoka One', cursive;
-  font-size: 2.5rem;
-}
-
-.display-button-off {
+.display-button {
   width: 80%;
   height: 8vh;
   margin: 5px;
@@ -70,6 +50,10 @@
   box-shadow: 2px 3px;
   font-family: 'Fredoka One', cursive;
   font-size: 2.5rem;
+}
+
+.on {
+  box-shadow: 2px 3px red !important;
 }
 
 #display {

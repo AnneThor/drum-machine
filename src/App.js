@@ -69,7 +69,11 @@ class App extends React.Component {
   render() {
 
     let buttonMap = Object.keys(this.state.currentDrum);
-    let displayButtonPower = "display-button-" + this.state.power.toLowerCase();
+    let powerStatus = this.state.power.toLowerCase();
+    let buttonClass = "display-button";
+    if (powerStatus === "on") {
+      buttonClass += " on";
+    }
 
     return (
       <div className="App"
@@ -97,7 +101,7 @@ class App extends React.Component {
               </label>
             </div>
 
-            <button className={displayButtonPower}>{
+            <button className={buttonClass}>{
               (this.state.power === "On") ? (this.state.currentDrum[`${this.state.currentButton}`]) : ""}
             </button>
 
