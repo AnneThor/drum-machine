@@ -51,7 +51,6 @@ function Button(props) {
         <audio className="clip"
                id={props.value}
                src={audioSource}
-               media-src={audioSource}
                type="audio/wav">
                Your browser does not support the <code>audio</code>element.
         </audio>
