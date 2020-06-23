@@ -3,8 +3,6 @@ import "./App.css";
 
 function Button(props) {
 
-      let controlClass = props.value + "-control";
-
       let audioSource='/audio/';
       switch (props.value) {
         case "A":
@@ -38,13 +36,16 @@ function Button(props) {
           return;
       }
 
+      let drumPadClass = "drum-pad-" + props.power.toLowerCase();
+
+
   return (
-    <button className={`drum-pad ${controlClass}`}
+    <button className={drumPadClass}
             id={audioSource}
             value={props.value}
             name={props.value}
             onClick={props.drumButtonClick}>
-              {props.value}
+              { (props.power === "On") ? props.value : "" }
         <audio className="clip"
                id={props.value}
                src={audioSource}

@@ -23,10 +23,11 @@ class App extends React.Component {
     };
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleDrumClick = this.handleDrumClick.bind(this);
+    this.handlePowerClick = this.handlePowerClick.bind(this);
   }
 
   handleKeyDown(event) {
-    if (event.key.length > 1) { return };
+    if (this.state.power === "Off" | event.key.length > 1) { return };
     let key = event.key.toUpperCase();
     let regExp = /[ACDEQSWXZ]{1}/;
     if (regExp.test(key)) {
@@ -45,12 +46,15 @@ class App extends React.Component {
   }
 
   handleDrumClick(event) {
+    if (this.state.power === "Off") { return };
     this.setState( {currentButton: event.target.value });
-    console.log("entered handle drum click");
-    console.log(document.getElementById(event.target.value).src);
     let audioClip = document.getElementById(event.target.value);
     audioClip.volume = document.getElementById("myRange").value;
     audioClip.play();
+  }
+
+  handlePowerClick(event) {
+    this.setState({power: (this.state.power === "On") ? "Off" : "On"});
   }
 
   componentDidMount() {
@@ -65,6 +69,7 @@ class App extends React.Component {
   render() {
 
     let buttonMap = Object.keys(this.state.currentDrum);
+    let displayButtonPower = "display-button-" + this.state.power.toLowerCase();
 
     return (
       <div className="App"
@@ -74,17 +79,27 @@ class App extends React.Component {
         <div id="display">
 
           <section className="drum-buttons">
-            { buttonMap.map( button => <Button key={button} value={button} drumButtonClick={this.handleDrumClick} />) }
+            { buttonMap.map( button => <Button key={button}
+                                               value={button}
+                                               power={this.state.power}
+                                               drumButtonClick={this.handleDrumClick}  />) }
           </section>
 
           <section className="fine-tuners">
-            <label htmlFor="power"
-                   className="power-switch">{this.state.power}
-              <input type="checkbox" />
-              <span className="power-slider"></span>
-            </label>
 
-            <button className="display-button">{this.state.currentDrum[`${this.state.currentButton}`]}</button>
+            <div className="power">
+              <label htmlFor="power">Power {this.state.power}</label>
+              <label className="power-switch">
+                <input type="checkbox"
+                       id="on-off"
+                       onClick={this.handlePowerClick}/>
+                <span className="power-slider"></span>
+              </label>
+            </div>
+
+            <button className={displayButtonPower}>{
+              (this.state.power === "On") ? (this.state.currentDrum[`${this.state.currentButton}`]) : ""}
+            </button>
 
             <div className="slide-container">
               <label htmlFor="volume-slider"
@@ -95,12 +110,6 @@ class App extends React.Component {
                      className="slider"
                      id="myRange" />
             </div>
-
-            <label htmlFor="bank"
-                   className="bank-switch">BANK
-              <input type="checkbox" />
-              <span className="bank-slider"></span>
-            </label>
 
           </section>
 

@@ -3,9 +3,12 @@
   padding: 0;
   text-align: center;
   min-height: 100vh;
+  font-size: 2rem;
+
 }
 
 .App-header {
+    text-shadow: 1px 1px #FFD700;
 }
 
 .drum-buttons {
@@ -13,6 +16,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  min-width: 50%;
   max-width: 50%;
   flex-grow: 1;
 }
@@ -28,9 +32,9 @@
 }
 
 
-.drum-pad {
-  width: 30%;
-  height: 10vh;
+.drum-pad-off {
+  width: 90px;
+  height: 75px;
   margin: 3px;
   border-radius: 10px;
   box-shadow: 2px 3px;
@@ -38,49 +42,71 @@
   font-size: 30pt;
 }
 
-.display-button {
+.drum-pad-on {
+  width: 90px;
+  height: 75px;
+  margin: 3px;
+  border-radius: 10px;
+  box-shadow: 2px 3px red;
+  font-family: 'Fredoka One', cursive;
+  font-size: 30pt;
+}
+
+.display-button-on {
+  width: 80%;
+  height: 8vh;
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: 2px 3px red;
+  font-family: 'Fredoka One', cursive;
+  font-size: 2.5rem;
+}
+
+.display-button-off {
   width: 80%;
   height: 8vh;
   margin: 5px;
   border-radius: 10px;
   box-shadow: 2px 3px;
   font-family: 'Fredoka One', cursive;
-  font-size: 25pt;
+  font-size: 2.5rem;
 }
 
 #display {
   display: flex;
   flex-direction: row;
-  height: 300px;
-  width: 800px;
+  height: 40%;
+  max-height:300px;
+  width: 60%;
+  max-width: 600px;
   border: solid 3px #FFA500;
   border-radius: 5px;
   box-shadow: 2px 3px #FFD700;
   align-items: center;
   padding: 20px;
-  margin: 10%;
+  margin: auto;
   background-color: silver;
 }
 
 
 /*the box around the power switch*/
-.power-switch, .bank-switch {
+.power-switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
-  border-radius: 10px;
+  border-radius: 20px;
   margin: 5px;
 }
 
-.power-switch input, .bank-switch input {
+.power-switch input {
   opacity: 0;
   width: 0;
   height: 0;
   /*hides the default HTML checkbox*/
 }
 
-.power-slider, .bank-slider {
+.power-slider {
   position: absolute;
   cursor: pointer;
   top:0;
@@ -90,10 +116,10 @@
   background-color: black;
   -webkit-transition: .4s;
   transition: .4s;
-  border-radious: 34px;
+  border-radius: 34px;
 }
 
-.power-slider:before, .bank-slider:before {
+.power-slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -106,26 +132,23 @@
   border-radius: 50%;
 }
 
-input:checked + .power-slider,
-input:checked + .bank-slider {
+input:checked + .power-slider {
   background-color: black;
 }
 
-input:focus + .power-slider,
-input:focus + .bank-slider {
+input:focus + .power-slider {
   box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked + .power-slider:before,
-input:checked + .bank-slider:before {
+input:checked + .power-slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
 
 .volume-slider-label {
-  font-family: 'Fredoka One', cursive;
-  font-size: 15pt;
+  padding-top: 3px;
+  padding-bottom: 0;
 }
 
 .slide-container {
@@ -135,7 +158,6 @@ input:checked + .bank-slider:before {
 .slider {
   -webkit-appearance: none; /*overwrite default CSS styles*/
   appearance: none;
-  margin: 3px;
   width: 100%;
   height: 10px;
   background: black;
@@ -165,3 +187,33 @@ input:checked + .bank-slider:before {
   background: white;
   cursor: pointer;
 }
+
+{/*
+@media only screen and (max-width: 1000px) {
+  #display {
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+    max-height:600px;
+    min-width: 60%;
+    max-width: 60%;
+    border: solid 3px #FFA500;
+    border-radius: 5px;
+    box-shadow: 2px 3px #FFD700;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: auto;
+    background-color: silver;
+  }
+
+  .drum-buttons {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+  }
+
+}
+*/}
