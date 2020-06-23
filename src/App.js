@@ -30,13 +30,24 @@ class App extends React.Component {
     let key = event.key.toUpperCase();
     let regExp = /[ACDEQSWXZ]{1}/;
     if (regExp.test(key)) {
-      document.getElementById(key).play();
+      var playPromise = document.getElementById(key).play();
+      if (playPromise !== undefined) {
+        playPromise.then ( _=> {
+          //means it is playing
+        })
+        .catch( error => {
+          //autoplay was prevented
+          console.log("playback prevented" + error);
+        })
+      }
       this.setState({currentButton: key});
     }
   }
 
   handleDrumClick(event) {
     this.setState( {currentButton: event.target.value });
+    console.log("entered handle drum click");
+    console.log(document.getElementById(event.target.value).src);
     let audioClip = document.getElementById(event.target.value);
     audioClip.volume = document.getElementById("myRange").value;
     audioClip.play();
