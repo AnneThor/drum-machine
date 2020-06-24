@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Button from './Button.js';
+import Popup from './components/Popup.js';
+import Button from './components/Button.js';
 
 class App extends React.Component {
 
@@ -20,10 +21,18 @@ class App extends React.Component {
         "C": "TOM 4",
       },
       power: "Off",
+      showPopup: true,
     };
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleDrumClick = this.handleDrumClick.bind(this);
     this.handlePowerClick = this.handlePowerClick.bind(this);
+    this.closePopup = this.closePopup.bind(this);
+  }
+
+  closePopup() {
+    this.setState({
+      showPopup: false,
+    })
   }
 
   handleKeyDown(event) {
@@ -78,6 +87,7 @@ class App extends React.Component {
     return (
       <div className="App"
            id="drum-machine">
+        {this.state.showPopup ? <Popup clicked={this.closePopup} /> : ""}
         <h1 className="App-header">Drum Machine</h1>
 
         <div id="display">

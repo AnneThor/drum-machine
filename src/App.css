@@ -172,32 +172,145 @@ input:checked + .power-slider:before {
   cursor: pointer;
 }
 
-{/*
-@media only screen and (max-width: 1000px) {
+.popup {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 10px 10px 0 0;
+  padding: 5px 5px;
+  width: 15%;
+  height: 270px;
+  background-color: yellow;
+  font-size: .60rem;
+  border: solid 3px black;
+  border-radius: 10px;
+}
+
+.popup\_inner {
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 25%;
+  bottom: 25%;
+  margin: 3px;
+  padding: auto;
+  border-radius: 20px;
+  background: white;
+  text-align: center;
+}
+
+
+@media only screen and (max-width: 1024px) {
   #display {
     display: flex;
     flex-direction: column;
-    height: 600px;
-    max-height:600px;
-    min-width: 60%;
-    max-width: 60%;
+    height: auto;
+    max-height: 600px;
+    width: 80%;
+    max-width: 600px;
     border: solid 3px #FFA500;
     border-radius: 5px;
     box-shadow: 2px 3px #FFD700;
     align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin: auto;
+    padding: 20px;
+    margin: auto auto 20px auto;
     background-color: silver;
   }
 
-  .drum-buttons {
+  .drum-pad {
+    width: 30%;
+    min-width: 50px;
+    max-width: 90px;
+    height: 25%;
+    min-height: 40px;
+    max-height: 75px;
+    margin: 3px;
+    border-radius: 10px;
+    box-shadow: 2px 3px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 30pt;
+  }
+
+  .display-button {
+    width: 80%;
+    height: 8vh;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 2px 3px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 2rem;
+  }
+
+  .popup {
+    position: static;
+    padding: 5px 5px;
+    width: 90vw;
+    height: 20%;
     margin: auto;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    flex-grow: 1;
+    background-color: yellow;
+    font-size: .75rem;
+    border: solid 3px black;
+    border-radius: 10px;
   }
 
 }
-*/}
+
+@media only screen and (max-width: 450px) {
+
+  .App-header {
+      font-size: 1.5rem;
+      text-shadow: 1px 1px #FFD700;
+  }
+
+  #display {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: 600px;
+    width: 80%;
+    max-width: 600px;
+    border: solid 3px #FFA500;
+    border-radius: 5px;
+    box-shadow: 2px 3px #FFD700;
+    align-items: center;
+    padding: 10px;
+    margin: auto auto 20px auto;
+    background-color: silver;
+    font-size: 1.5rem
+  }
+
+  .drum-buttons {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 50%;
+    max-width: 80%;
+    flex-grow: 1;
+  }
+
+  .drum-pad {
+    width: 30%;
+    min-width: 50px;
+    max-width: 90px;
+    height: 25%;
+    min-height: 40px;
+    max-height: 75px;
+    margin: 3px;
+    border-radius: 10px;
+    box-shadow: 2px 3px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+  }
+
+  .display-button {
+    width: 80%;
+    height: 8vh;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 2px 3px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.5rem;
+  }
+
+}
